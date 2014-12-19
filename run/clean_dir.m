@@ -10,7 +10,17 @@ for j=1:length(dirs)
    %%
    newdir   = ['../results/test_',sss{2}];
    eval(['!mkdir -p ',newdir]);
-   eval(['!mv ',pdir,' ',newdir]);
-   eval(['!mv ',odir,'/pdf ',newdir]);
-   eval(['!mv ',odir,' ',newdir]);
+   eval(['!mkdir -p ',newdir,'/pdf']);
+   eval(['!mkdir -p ',newdir,'/' pdir]);
+   eval(['!mkdir -p ',newdir,'/' odir]);
+   %%
+   eval(['!mkdir -p ',newdir]);
+   eval(['!mv ',pdir,'/* ',newdir,'/' pdir]);
+   eval(['!rm -r ',pdir]);
+   %%
+   eval(['!mv ',odir,'/pdf/* ',newdir,'/pdf']);
+   eval(['!rm -r ',odir,'/pdf/*']);
+   %%
+   eval(['!mv ',odir,'/* ',newdir,'/' odir]);
+   eval(['!rm -r ',odir]);
 end
