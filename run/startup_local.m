@@ -13,7 +13,7 @@ end
 %% define paths;
 bamg_path      = '../../ISSM-trunk-jpl-svn/lib';
 johansen_paths = [data_sim,'/data'];%%+all subdirs
-nextsim_path   = '../../neXtSim-trunk-Sourcetree';
+nextsim_path   = '../../neXtSIM-trunk-SourceTree';
 topaz_path     = [johansen_paths,'/TOPAZ4/200709_201102'];
 amsre_path     = [johansen_paths,'/AMSRE_ice_conc/2008/mar']
 
