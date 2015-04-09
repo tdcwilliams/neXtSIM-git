@@ -1,4 +1,11 @@
 function [simul_out,gridprams]   = wim2sim(simul_out,gridprams)
+%% function to call from perform_simul.m (called at end of EB_model_v2.m)
+%% do it round "Time interpolation of the forcings"
+%%    - when Vair and Voce are calculated
+%% - wave stresses should go into system_assemble_mex.c at "Step1"
+%%    - similar to Voce, Vair?
+%% - Dmax should maybe go into Step1 too (influence damage?)
+%%    - also thermodynamic effect (lat melt - thermo_ow_mex.c)
 
 if ~exist(gridprams,'var')
    %% Get WIM grid from file
