@@ -4,6 +4,7 @@ function [simul_out,gridprams]   = wim2sim(simul_out,gridprams)
 %%    - when Vair and Voce are calculated
 %% - wave stresses should go into system_assemble_mex.c at "Step1"
 %%    - similar to Voce, Vair?
+%%               coef_Vair=Vair_factor?
 %% - Dmax should maybe go into Step1 too (influence damage?)
 %%    - also thermodynamic effect (lat melt - thermo_ow_mex.c)
 
