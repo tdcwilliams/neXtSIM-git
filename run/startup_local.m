@@ -10,10 +10,14 @@ else
    error('- eg connect to johansen (/Data/sim) with cmd+k');
 end
 
-%% define paths;
-bamg_path      = '../../ISSM-trunk-jpl-svn/lib';
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% define neXtSIM paths;
+gitdir         = getenv('GIT_REPOS');
+xsimdir        = [gitdir,'/neXtSIM'];
+nextsim_path   = [xsimdir,'/neXtSIM-trunk-SourceTree'];
+bamg_path      = [xsimdir,'/ISSM-trunk-jpl-svn/lib'];
+%%
 johansen_paths = [data_sim,'/data'];%%+all subdirs
-nextsim_path   = '../../neXtSIM-trunk-SourceTree';
 topaz_path     = [johansen_paths,'/TOPAZ4/200709_201102'];
 amsre_path     = [johansen_paths,'/AMSRE_ice_conc/2008/mar']
 
@@ -28,7 +32,22 @@ dirs  = {nextsim_path,...
 for loop_i=1:length(dirs)
    addpath(dirs{loop_i});
 end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%wim2d paths
+wimdirs{1}  = [xsimdir,'/neXtSIM-git/WIMcoupling'];%%coupling between nextsim and wim
+%%
+wimdir1     = [gitdir,'/WIM2d/fortran'];
+wimdirs{2}  = [wimdir1,'/bin'];%%mex funs
+wimdirs{3}  = [wimdir1,'/run'];%%interface to mex funs
+wimdirs{4}  = [wimdir1,'/matlab_funs'];
+for loop_i=1:length(wimdirs)
+   addpath(wimdirs{loop_i});
+end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% other "MATLAB" paths
 mat_path = [data_sim,'/MATLAB'];
 addpath([mat_path]);
@@ -57,5 +76,6 @@ for j=1:length(lookin_dirs)
    end
 
 end
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 showpaths;
