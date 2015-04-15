@@ -50,7 +50,7 @@ else
    data(:,3)   = [];
 end
 
-if 0
+if 1
    % from ISSM, use mex from InterpFromMeshToGrid.cpp
    % to interp from mesh to WIM grid
    % TODO get working
@@ -58,8 +58,8 @@ if 0
    %WIM grid info
    xmin     = 1e3*min(gridprams.X(:)); % WIM grid xmin (stere proj, km)
    ymax     = 1e3*max(gridprams.Y(:)); % WIM grid ymax (stere proj, km)
-   xposting = 1e3*gridprams.dx;        % res in x dirn (km)
-   yposting = 1e3*gridprams.dy;        % res in y dirn (km)
+   xposting = 1e3*gridprams.dy;        % res in y dirn (km)
+   yposting = 1e3*gridprams.dx;        % res in x dirn (km)
    nlines   = gridprams.nx;            % no of rows in WIM grid
    ncols    = gridprams.ny;            % no of cols in WIM grid
 
@@ -72,12 +72,32 @@ if 0
    size(xcent)
    size(ycent)
    size(data)
-                     %xmin,ymax,xposting,yposting,nlines,ncols,missing_m2g
+
+   if 1
+      mfil  = 'test_InterpFromMeshToGrid.mat';
+      %%
+      inputs.index         = index;
+      inputs.x             = xcent;
+      inputs.y             = ycent;
+      inputs.data          = data(:,1);
+      inputs.xmin          = xmin;
+      inputs.ymax          = ymax;
+      inputs.xposting      = xposting;
+      inputs.yposting      = yposting;
+      inputs.nlines        = nlines;
+      inputs.ncols         = ncols;
+      inputs.default_value = NaN;
+      save(mfil,'inputs');
+      %%
+      [x_m,y_m,griddata]   =...
+         InterpFromMeshToGrid(inputs.index,inputs.x,inputs.y,inputs.data,...
+                              inputs.xmin,inputs.ymax,inputs.xposting,inputs.yposting,inputs.nlines,inputs.ncols,...
+                              inputs.default_value);
+   end
+
    [xWIM,yWIM,griddata] = ...
-      InterpFromMeshToGrid(index,xcent,ycent,data,xmin,ymax,...
+      InterpFromMeshToGrid(index,xcent,ycent,data(:,1),xmin,ymax,...
                            xposting,yposting,nlines,ncols,missing_m2g);
-   %[x_m y_m data_grid]=InterpFromMeshToGrid(elements,x,y,data,xlim(1),ylim(2),
-   %                        post,post,round(diff(ylim)/post),round(diff(xlim)/post),NaN);
    %[x_m,y_m,griddata]=InterpFromMeshToGrid(index,x,y,data,xmin,ymax,xposting,yposting,nlines,ncols,default_value)
    % xWIM = x points of WIM grid (already have)
    % yWIM = y points of WIM grid (already have)
