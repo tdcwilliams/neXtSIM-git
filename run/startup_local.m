@@ -40,6 +40,7 @@ wimdir1     = [gitdir,'/WIM2d/fortran'];
 wimdirs{2}  = [wimdir1,'/bin'];%%mex funs
 wimdirs{3}  = [wimdir1,'/run'];%%interface to mex funs
 wimdirs{4}  = [wimdir1,'/matlab_funs'];
+wimdirs{5}  = [gitdir,'/matlab/Semi-Infinite-Elastic-Plate/GEN_progs'];
 for loop_i=1:length(wimdirs)
    addpath(wimdirs{loop_i});
 end
